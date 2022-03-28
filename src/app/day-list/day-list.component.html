@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: rgba(155, 136, 243, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    
+        <h1 dir="rtl" style="text-align:right; padding: 30px;">נתוני מכירות</h1>
+        <button (click)="sort(days)">מיון לפי סכום מכירות</button>
+        <button (click)="biggestRange(days)">טווח הרצף הגדול ביותר של ימים שבהם הייתה או ירידה או עליה </button>
+        <ul class="list-group-item">
+            <li class="row">
+                <div class="col-2">מחיר ממוצע</div>
+                <div class="col-2">מספר פריטים</div>
+                <div class="col-2">מספר קונים</div>
+                <div class="col-2">מספר מכירות</div>
+                <div class="col-2">סכום מכירה</div>
+                <div class="col-2">תאריך</div>
+                <div class="col-1"></div>
+                <div class="col-1"></div>
+            </li>
+        </ul>
+        <ul class="list-group">
+
+            <li *ngFor="let index of days | keyvalue" class="list-group-item">
+                <cdk-virtual-scroll-viewport itemSize="10" class="example-viewport">
+                <div class="row">
+                    <br>
+                    <div class="col-2">{{(index.value.items >0 ? (index.value.sales/index.value.items).toFixed(2) : 0)}}
+                    </div>
+                    <div class="col-2">{{index.value.items}}</div>
+                    <div class="col-2">{{index.value.customers}}</div>
+                    <div class="col-2">{{index.value.orders}}</div>
+                    <div class="col-2">{{index.value.sales}}</div>
+
+
+                    <div class="col-1.55">{{index.key}}</div>
+
+                    <div class="col-0.25">
+                        <button style="border: none;" (click)="edit(index.key)"><img src="../../assets/Images/edit.png"
+                                style="width: 15px;"></button>
+                    </div>
+                    <div class="col-0.25">
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <button style="position: absolute; top:-5px" (click)="delete(index.key)" class="btn"><i
+                                class="fa fa-trash"></i></button>
+                    </div>
+
+                </div>
+            </cdk-virtual-scroll-viewport>
+
+            </li>
+        </ul>
+        <br>
+        <br>
+    
+</body>
+
+</html>
+<app-day-details-form-md [day]="selectedDay" (onSaveDay)="saveDay($event)">
+</app-day-details-form-md>

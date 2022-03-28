@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="dayForm" #form1>
+            <div class="form-group">
+                <label for="sales">סכום מכירה</label>
+                <input type="text" class="form-control" id="sales" formControlName="sales">
+                <br>
+                <label for="orders">מספר מכירות</label>
+                <input type="text" class="form-control" id="orders" formControlName="orders">
+                <br>
+                <label for="items">מספר פריטים</label>
+                <input type="text" class="form-control" id="items" formControlName="items">
+                <br>
+                <label for="customers">מספר קונים</label>
+                <input type="text" class="form-control" id="customers" formControlName="customers">
+                <button class="btn btn-primary"  (click)="saveNewDay()">
+                   שמירה</button>
+            </div>
+        </form>
+    </div>
+
+</div>
